@@ -1,0 +1,119 @@
+﻿@page
+@model IndexModel
+
+<style>
+    body {
+        background-color: #ffe6f0; /* rosa claro */
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+
+    h2, h3 {
+        color: #cc3366; /* tono rosa más fuerte */
+    }
+
+    form {
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    input, select, button {
+        margin-top: 5px;
+        padding: 8px;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        background-color: #cc3366;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    button:hover {
+        background-color: #b32d57;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    th {
+        background-color: #cc3366;
+        color: white;
+        padding: 10px;
+        text-align: left;
+    }
+
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #f9d9e5; /* resaltado suave */
+    }
+</style>
+
+
+<h2>Formulario</h2>
+<form method="post">
+    <label asp-for="NuevoCliente.Nombre">Nombre</label>
+    <input asp-for="NuevoCliente.Nombre" placeholder="Nombre" />
+
+    <label asp-for="NuevoCliente.Apellido">Apellido</label>
+    <input asp-for="NuevoCliente.Apellido" placeholder="Apellido" />
+
+    <label asp-for="NuevoCliente.Genero">Género</label>
+    <select asp-for="NuevoCliente.Genero">
+        <option value="Femenino">Femenino</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Binario">Binario</option>
+    </select>
+
+    <button type="submit">Insertar</button>
+</form>
+
+<h3>Clientes</h3>
+<table>
+    <tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Género</th></tr>
+    @foreach (var c in Model.Clientes)
+    {
+        <tr>
+            <td>@c.Idcliente</td>
+            <td>@c.Nombre</td>
+            <td>@c.Apellido</td>
+            <td>@c.Genero</td>
+        </tr>
+    }
+</table>
+
+<h3>Géneros</h3>
+<table>
+    <tr><th>ID Género</th><th>Texto</th><th>ID Cliente</th></tr>
+    @foreach (var g in Model.Generos)
+    {
+        <tr>
+            <td>@g.Idgenero</td>
+            <td>@g.GeneroTexto</td>
+            <td>@g.Idcliente</td>
+        </tr>
+    }
+</table>
